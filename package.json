@@ -25,8 +25,9 @@
     "core-js": "^2.4.1",
     "express": "^4.15.5",
     "mongodb": "^2.2.31",
-    "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14"
+    "rxjs": "^5.2.0",
+    "zone.js": "^0.8.14",
+    "systemjs": "^0.19.47"
   },
   "devDependencies": {
     "@angular/cli": "1.4.3",
