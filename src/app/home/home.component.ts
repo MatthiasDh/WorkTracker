@@ -1,30 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Customer } from "../_models/customer";
 import { User } from '../_models/user';
 import { UserService } from '../_services/user.service';
+import { CustomerService } from '../_services/customer.service';
 
 @Component({
-   moduleId: module.id,
-   templateUrl: 'home.component.html'
+    moduleId: module.id,
+    templateUrl: 'home.component.html'
 })
 
 export class HomeComponent implements OnInit {
-   currentUser: User;
-   users: User[] = [];
+    currentUser: User;
+    customers: Customer[] = [];
+    users: User[] = [];
 
-   constructor(private userService: UserService) {
-       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-   }
+    /*customer1: Customer;*/
+    dummyCustomer: Customer;
 
-   ngOnInit() {
-       this.loadAllUsers();
-   }
+    constructor(private userService: UserService, private customerService: CustomerService) {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
-   deleteUser(_id: string) {
-       this.userService.delete(_id).subscribe(() => { this.loadAllUsers() });
-   }
+    ngOnInit() {
+        this.loadAllUsers();
+        this.loadAllCustomersOfCurrentUser();
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        /*this.customer1 = new Customer(this.currentUser, "testUser", "test", "test", "user");
+        this.customerService.create(this.customer1).subscribe();*/
+    }
 
-   private loadAllUsers() {
-       this.userService.getAll().subscribe(users => { this.users = users; });
-   }
+    deleteUser(_id: string) {
+        this.userService.delete(_id).subscribe(() => { this.loadAllUsers() });
+    }
+
+    private loadAllUsers() {
+        this.userService.getAll().subscribe(users => { this.users = users; });
+    }
+
+    private loadAllCustomersOfCurrentUser() {
+        this.customerService.getAll().subscribe(customers => {this.customers = customers});
+    }
 }
