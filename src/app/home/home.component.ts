@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit {
     }
 
     private loadAllCustomersOfCurrentUser() {
-        this.customerService.getAll().subscribe(customers => {this.customers = customers});
+        this.customerService.getAll()
+        .filter(cust => cust._id === this.currentUser._id)
+        .subscribe(customers => {this.customers = customers;});
     }
 }

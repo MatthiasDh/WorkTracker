@@ -9,7 +9,7 @@ export class CustomerService {
     getAll() {
         return this.http.get('/customers').map((response: Response) => response.json());
     }
- 
+
     getById(_id: string) {
         return this.http.get('/customers/' + _id).map((response: Response) => response.json());
     }
