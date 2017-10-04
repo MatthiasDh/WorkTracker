@@ -31,7 +31,7 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">MY PROFILE</a></li>
+                <li><a [routerLink]="['/profile']">MY PROFILE</a></li>
                 <li><a [routerLink]="['/login']">LOGOUT</a></li>
             </ul>
         </div>
@@ -59,35 +59,24 @@
                         <thead>
                             <tr>
                                 <th><em class="fa fa-cog"></em></th>
-                                <th class="hidden-xs">ID</th>
-                                <th>Username</th>
-                                <th>Name</th>
+                                <th class="hidden-xs">Username</th>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td align="center">
-                                    <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                    <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                                </td>
-
-                                <td class="hidden-xs">1</td>
-                                <td>John Doe</td>
-                                <td>johndoe@example.com</td>
-                            </tr>
                             <tr *ngFor="let customer of customers">
                                 <td align="center">
-                                    <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                    <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                    <a class="btn btn-default" (click)="editCustomer(customer._id)"><em class="fa fa-pencil"></em></a>
+                                    <a class="btn btn-danger" (click)="deleteCustomer(customer._id)"><em class="fa fa-trash"></em></a>
                                 </td>
 
-                                <td class="hidden-xs">{{customer._id}}</td>
-                                <td>{{customer.username}}</td>
-                                <td>{{customer.firstName}} {{customer.lastName}}</td>
+                                <td class="hidden-xs">{{customer.username}}</td>
+                                <td>{{customer.firstName}}</td>
+                                <td>{{customer.lastName}}</td>
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
                 <div class="panel-footer">
                     <div class="row">
@@ -109,7 +98,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

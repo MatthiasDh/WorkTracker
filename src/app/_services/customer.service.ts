@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
  
 import { Customer } from '../_models/customer';
+import { User } from '../_models/user';
 @Injectable()
 export class CustomerService {
     constructor(private http: Http) { }
  
-    getAll() {
-        return this.http.get('/customers').map((response: Response) => response.json());
+    getAll(_currentUserId: string) {
+        return this.http.get('/customers/').map((response: Response) => response.json());
     }
 
     getById(_id: string) {

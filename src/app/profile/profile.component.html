@@ -1,0 +1,102 @@
+<nav class="navbar navbar-clean">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" [routerLink]="['/home']">WorkTracker</a>
+            </div>
+    
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a [routerLink]="['/home']">HOME <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">LINK</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ANOTHER LINK <i class="ion-ios-arrow-down"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">MY PROFILE</a></li>
+                    <li><a [routerLink]="['/login']">LOGOUT</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        <div class="row main">
+            <div class="main-login main-center">
+                <h3>Register a new customer!</h3>
+                <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+    
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+                        <label for="firstName" class="cols-sm-2 control-label">Firstname</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-user"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName"
+                                 #firstName="ngModel" required/>
+                                <div *ngIf="f.submitted && !firstName.valid" class="help-block">Firstname is required</div>
+                                <p>{{currentUser.firstName}}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+                        <label for="lastName" class="cols-sm-2 control-label">Lastname</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-user"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="lastName" id="lastName" [(ngModel)]="model.lastName"
+                                 #lastName="ngModel" required/>
+                                <div *ngIf="f.submitted && !lastName.valid" class="help-block">Firstname is required</div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                        <label for="username" class="cols-sm-2 control-label">Username</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-user"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="username" id="username" [(ngModel)]="model.username"
+                                 #username="ngModel" required/>
+                                <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-lock"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="password" id="password" [(ngModel)]="model.password"
+                                 #password="ngModel" required/>
+                                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <input [disabled]="loading" type="submit" class="btn btn-block btn-lg btn-primary" value="Register" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
