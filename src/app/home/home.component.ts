@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from "../_models/customer";
 import { User } from '../_models/user';
+import { Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
 import { CustomerService } from '../_services/customer.service';
 
@@ -16,15 +17,13 @@ export class HomeComponent implements OnInit {
 
     /*customer1: Customer;*/
 
-    constructor(private userService: UserService, private customerService: CustomerService) {
+    constructor(private userService: UserService, private customerService: CustomerService,private router: Router) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
         this.loadAllCustomersOfCurrentUser();
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        /*this.customer1 = new Customer(this.currentUser, "testUser", "test", "test", "user");
-        this.customerService.create(this.customer1).subscribe();*/
     }
 
     deleteCustomer(_id: string) {
@@ -33,7 +32,14 @@ export class HomeComponent implements OnInit {
 
 
     editCustomer(_id: string){
-        console.log("Still needs to be implemented");
+        localStorage.setItem('isEdit',JSON.stringify(true));
+        this.customerService.getById(_id).subscribe(data => {localStorage.setItem('editCustomer',JSON.stringify(data));});
+        this.router.navigate(['/register']);
+    }
+
+    createNewCustomer(){
+        localStorage.setItem('isEdit',JSON.stringify(false));
+        this.router.navigate(['/register']);
     }
 
     private loadAllCustomersOfCurrentUser() {

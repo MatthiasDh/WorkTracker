@@ -41,9 +41,9 @@
 <div class="container">
 	<div class="row main">
 		<div class="main-login main-center">
-			<h3>Register a new customer!</h3>
+			<h3 *ngIf="!isEdit">Register a new customer!</h3>
+			<h3 *ngIf="isEdit">Update customer</h3>
 			<form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-
 				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
 					<label for="firstName" class="cols-sm-2 control-label">Firstname</label>
 					<div class="cols-sm-10">
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 
-				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+				<div *ngIf="!isEdit" class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
 					<label for="password" class="cols-sm-2 control-label">Password</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
@@ -93,7 +93,8 @@
 				</div>
 
 				<div class="form-group">
-                    <input [disabled]="loading" type="submit" class="btn btn-block btn-lg btn-primary" value="Register" />
+					<input *ngIf="!isEdit" [disabled]="loading" type="submit" class="btn btn-block btn-lg btn-primary" value="Register" />
+					<input *ngIf="isEdit" [disabled]="loading" type="submit" (click)="update()" class="btn btn-block btn-lg btn-primary" value="Update customer" />
 				</div>
 			</form>
 		</div>

@@ -8,6 +8,7 @@ var customerService = require('services/customer.service');
 // routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
+router.get('/:_id',getById);
 router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:_id', update);
@@ -54,6 +55,20 @@ function getAll(req, res) {
 
 function getCurrent(req, res) {
     customerService.getById(req.customer.sub)
+        .then(function(customer) {
+            if (customer) {
+                res.send(customer);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function(err) {
+            res.status(400).send(err);
+        });
+}
+
+function getById(req, res) {
+    customerService.getById(req.params._id)
         .then(function(customer) {
             if (customer) {
                 res.send(customer);
