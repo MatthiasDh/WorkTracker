@@ -37,6 +37,10 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/register']);
     }
 
+    manageCustomer(_id: string){
+        this.router.navigate(['/dashboard']);
+    }
+
     createNewCustomer(){
         localStorage.setItem('isEdit',JSON.stringify(false));
         this.router.navigate(['/register']);

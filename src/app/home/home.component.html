@@ -71,7 +71,7 @@
                                     <a class="btn btn-danger" (click)="deleteCustomer(customer._id)"><em class="fa fa-trash"></em></a>
                                 </td>
 
-                                <td class="hidden-xs">{{customer.username}}</td>
+                                <td class="pointer" (click)="manageCustomer(customer._id)">{{customer.username}}</td>
                                 <td>{{customer.firstName}}</td>
                                 <td>{{customer.lastName}}</td>
                             </tr>
