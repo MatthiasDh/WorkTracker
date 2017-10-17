@@ -8393,19 +8393,35 @@ html {
     text-decoration: underline;
 }
 
-.col-lg-3 .panel .panel-body{
-  background: #F5F5F5;
+.c-information {
+  right: 2%;
+  position: absolute;
+  width: 20%;
 }
 
-.col-lg-3 .panel .panel-heading{
-  background-color: rgba(255, 255, 255, 0.5);
+.c-information .panel-default{
+  margin-top: 0.5%;
 }
 
-.information {
-  margin-left: 5%;
-  margin-right: 5%;
+.f-information {
+  margin-top: 151px;
+  right: 2%;
+  position: absolute;
+  width: 20%;
+
 }
 
-.information .panel-default{
-  margin-top: 2%;
+.p-information {
+  position: absolute;
+  margin-left: 2%;
+  width: 75%;
 }
+
+.p-information .panel.panel-default {
+  margin-top: 0px;
+}
+
+.progress {
+  margin: 2%;
+}
+

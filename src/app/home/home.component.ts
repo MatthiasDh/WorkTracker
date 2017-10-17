@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit {
     }
 
     manageCustomer(_id: string){
+        this.customerService.getById(_id).subscribe(data => {localStorage.setItem('manageCustomer',JSON.stringify(data));});
+        console.log(JSON.parse(localStorage.getItem('manageCustomer')));
         this.router.navigate(['/dashboard']);
     }
 
