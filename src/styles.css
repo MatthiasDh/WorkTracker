@@ -8415,6 +8415,7 @@ html {
   position: absolute;
   margin-left: 2%;
   width: 75%;
+  margin-bottom: 0;
 }
 
 .p-information .panel.panel-default {
@@ -8423,5 +8424,11 @@ html {
 
 .progress {
   margin: 2%;
+}
+
+.status{
+  color: white;
+  margin-left: 2%;
+  display: inline-block;
 }
 

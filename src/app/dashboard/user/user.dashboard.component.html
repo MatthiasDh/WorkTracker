@@ -28,11 +28,17 @@
     <!-- /.container-fluid -->
 </nav>
 
+<div class="status">
+    <input (click)="notStarted()" type="radio" name="gender" value="Not Started"> Not Started
+    <input (click)="inProgress()" type="radio" name="gender" value="In Progress"> In Progress
+    <input (click)="finished()" type="radio" name="gender" value="Finished"> Finished
+</div>
+
 <div class="progress">
-    <div *ngIf="isFinished" class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+    <div *ngIf="isFinished" class="progress-bar progress-bar-success" role="progressbar" style="width:100%"> 
         Finished
     </div>
-    <div *ngIf="!isStarted" class="progress-bar progress-bar-danger" role="progressbar" style="width:100%">
+    <div *ngIf="!isStarted" class="progress-bar progress-bar-danger" role="progressbar" style="width:100%" checked="!isStarted">
         Not Started
     </div>
     <div *ngIf="isStarted" class="progress-bar progress-bar-warning" role="progressbar" style="width:100%">
@@ -54,9 +60,16 @@
     <div class="panel panel-default">
         <div class="panel-heading">Usefull Files</div>
         <div class="panel-body">
-            <p>Name: <input type="file"></p>
-            <p>Name: </p>
-            <p>Name: </p>
+            <p>Name:
+                <input type="file">
+            </p>
+            <p>Name:
+                <input type="file">
+            </p>
+
+            <p>Name:
+                <input type="file">
+            </p>
         </div>
     </div>
 </div>
@@ -66,6 +79,8 @@
         <div class="panel-heading">Used Products
         </div>
         <div class="panel-body">
+            <p>Name: </p>
+            <p>Name: </p>
             <p>Name: </p>
             <p>Name: </p>
             <p>Name: </p>
