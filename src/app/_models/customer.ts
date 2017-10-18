@@ -14,7 +14,5 @@ export class Customer {
         this.password = password;
         this.firstName = firstname;
         this.lastName = lastname;
-        this.isStarted = false;
-        this.isFinished = false;
     };
 }

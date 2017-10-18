@@ -13,7 +13,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a [routerLink]="['/profile']">MY PROFILE</a>
@@ -29,17 +29,16 @@
 </nav>
 
 <div class="progress">
-    <div class="progress-bar progress-bar-danger" role="progressbar" style="width:0%">
-        Not Started
-    </div>
-    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:100%">
-        In Progress
-    </div>
-    <div class="progress-bar progress-bar-success" role="progressbar" style="width:0%">
+    <div *ngIf="isFinished" class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
         Finished
     </div>
+    <div *ngIf="!isStarted" class="progress-bar progress-bar-danger" role="progressbar" style="width:100%">
+        Not Started
+    </div>
+    <div *ngIf="isStarted" class="progress-bar progress-bar-warning" role="progressbar" style="width:100%">
+        In Progress
+    </div>
 </div>
-
 <div class="c-information">
     <div class="panel panel-default">
         <div class="panel-heading">Customer Information</div>
@@ -47,7 +46,6 @@
             <p>Username: {{customer.username}}</p>
             <p>Firstname: {{customer.firstName}}</p>
             <p>Lastname: {{customer.lastName}}</p>
-            <p>Progress Status: {{customer.isStarted}}</p>
         </div>
     </div>
 </div>
@@ -56,7 +54,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">Usefull Files</div>
         <div class="panel-body">
-            <p>Name: </p>
+            <p>Name: <input type="file"></p>
             <p>Name: </p>
             <p>Name: </p>
         </div>

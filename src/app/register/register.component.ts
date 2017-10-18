@@ -36,6 +36,9 @@ export class RegisterComponent {
         this.loading = true;
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.model.user = this.currentUser;
+        this.model.isStarted = false;
+        this.model.isFinished = false;
+        console.log(this.model);
         this.customerService.create(this.model)
             .subscribe(
             data => {
