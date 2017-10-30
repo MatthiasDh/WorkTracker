@@ -35,7 +35,7 @@ export class CustomerService {
         if(this.isDev){
             return 'http://localhost:4000'+ep;
         } else {
-          return 'https://webapps-worktracker.herokuapp.com/'+ep;
+          return 'https://webapps-worktracker.herokuapp.com'+ep;
         }
     }
 }
