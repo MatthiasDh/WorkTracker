@@ -7,10 +7,10 @@ import { Customer } from '../_models/customer';
 export class UserService {
     isDev:boolean;
     constructor(private http:Http) {
-        this.isDev=false; //bij deployen
-        //this.isDev=true; //bij development
+        //this.isDev=false; //bij deployen
+        this.isDev=true; //bij development
     }
- 
+
     getAll() {
         return this.http.get(this.prepEndpoint('/users')).map((response: Response) => response.json());
     }

@@ -7,11 +7,14 @@ import { User } from '../_models/user';
 export class CustomerService {
     isDev:boolean;
     constructor(private http:Http) {
-        this.isDev=false; //bij deployen
-        //this.isDev=true; //bij development
+        //this.isDev=false; //bij deployen
+        this.isDev=true; //bij development
     }
  
-    getAll(_currentUserId: string) {
+    getAllCustomersFromUser(_id:string){
+        return this.http.get(this.prepEndpoint('/customers/getcustomersfromuser/' + _id)).map((response: Response)=> response.json());
+    }
+    getAll() {
         return this.http.get(this.prepEndpoint('/customers/')).map((response: Response) => response.json());
     }
 

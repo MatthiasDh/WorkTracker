@@ -10,6 +10,7 @@ router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:_id', update);
 router.delete('/:_id', _delete);
+router.get('/getcustomersfromuser/:_id',getCustomersFromUser);
 
 module.exports = router;
 
@@ -24,6 +25,17 @@ function authenticate(req, res) {
                 // authentication failed
                 res.status(400).send('username or password is incorrect');
             }
+        })
+        .catch(function(err) {
+            res.status(400).send(err);
+        });
+}
+
+function getCustomersFromUser(req,res) {
+    console.log("-----controller.js-----");
+    customerService.getCustomersFromUser(req.params._id)
+        .then(function(customers) {
+            res.send(customers);
         })
         .catch(function(err) {
             res.status(400).send(err);

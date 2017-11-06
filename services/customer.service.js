@@ -15,6 +15,7 @@ service.getById = getById;
 service.create = create;
 service.update = update;
 service.delete = _delete;
+service.getCustomersFromUser = getCustomersFromUser;
 
 module.exports = service;
 
@@ -39,6 +40,22 @@ function authenticate(username, password) {
         }
     });
 
+    return deferred.promise;
+}
+
+function getCustomersFromUser(_id) {
+    var deferred = Q.defer();
+
+    db.customers.find({_userId : _id}).toArray(function(err, customers) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+                // return customers (without hashed passwords)
+                customers = _.map(customers, function(customer) {
+                    return _.omit(customer, 'hash');
+                });
+        
+                deferred.resolve(customers);
+        }
+    );
     return deferred.promise;
 }
 

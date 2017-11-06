@@ -35,7 +35,7 @@ export class RegisterComponent {
     register() {
         this.loading = true;
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.model.user = this.currentUser;
+        this.model._userId = this.currentUser._id;
         this.model.isStarted = false;
         this.model.isFinished = false;
         console.log(this.model);

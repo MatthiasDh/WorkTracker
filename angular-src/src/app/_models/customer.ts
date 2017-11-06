@@ -1,7 +1,7 @@
 import {User} from "./user";
 export class Customer {
     _id: string;
-    user: User;
+    _userId: string;
     username: string;
     password: string;
     firstName: string;
@@ -9,10 +9,5 @@ export class Customer {
     isStarted: boolean;
     isFinished: boolean;
     constructor(user :User,username:string,password:string,firstname:string,lastname:string){
-        this.user = user;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstname;
-        this.lastName = lastname;
     };
 }
