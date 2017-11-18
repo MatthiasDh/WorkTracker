@@ -12,9 +12,9 @@ export class UserdashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
-    this.isStarted = this.customer.isStarted;
-    this.isFinished = this.customer.isFinished;
+      this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
+      this.isStarted = this.customer.isStarted;
+      this.isFinished = this.customer.isFinished;
   }
 
   notStarted() {

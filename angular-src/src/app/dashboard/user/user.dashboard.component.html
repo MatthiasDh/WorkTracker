@@ -1,5 +1,5 @@
 <header>
-<script type="text/javascript" src="../../_directives/fileModel.js"></script>
+    <script type="text/javascript" src="../../_directives/fileModel.js"></script>
 </header>
 <nav class="navbar navbar-clean">
     <div class="container-fluid">
@@ -61,23 +61,7 @@
 
 <div class="f-information">
     <div class="panel panel-default">
-        <div class="panel-heading">Usefull Files</div>
-        <div class="panel-body">
-                <form ng-submit="Submit();">
-                        <label class="btn btn-success">
-                            Browse
-                            <input type="file" ng-disabled="uploading" file-model="file.upload" name="myfile" style="display: none;" onchange="angular.element(this).scope().photoChanged(this.files)">
-                        </label>
-                        <br>
-                        <br>
-                        <button ng-disabled="uploading" type="submit" class="btn btn-primary">Upload</button>
-                    </form>
-                    <br>
-                    <img ng-src="{{ thumbnail.dataUrl || https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg }}">
-                    <div ng-show="message">
-                        <div ng-class="alert">{{ message }}</div>
-                    </div>
-        </div>
+        <div class="panel-heading">Usefull files</div>
     </div>
 </div>
 
@@ -86,17 +70,12 @@
         <div class="panel-heading">Used Products
         </div>
         <div class="panel-body">
-            <p>Name: </p>
-            <p>Name: </p>
-            <p>Name: </p>
-            <p>Name: </p>
-            <p>Name: </p>
-            <p>Name: </p>
-            <p>Name: </p>
-            <p>Name: </p>
-            <p>Name: </p>
-            <p>Name: </p>
-            <p>Name: </p>
+            <tr *ngFor="let product of customer.usedProducts">
+                <p>Name:
+                    <input type="text" name="input" value="{{product}}">
+                    <input type="button" value="Save product" />
+                </p>
+            </tr>
         </div>
     </div>
 </div>

@@ -19,6 +19,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserdashboardComponent} from './dashboard/user/user.dashboard.component'
 import { CustomerdashboardComponent} from './dashboard/customer/customer.dashboard.component'
+import {ProfileComponent} from './profile/profile.component';
  
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { CustomerdashboardComponent} from './dashboard/customer/customer.dashboa
         RegisterComponent,
         DashboardComponent,
         UserdashboardComponent,
-        CustomerdashboardComponent
+        CustomerdashboardComponent,
+        ProfileComponent
     ],
     providers: [
         AuthGuard,

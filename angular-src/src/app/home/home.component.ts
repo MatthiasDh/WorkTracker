@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
     customers: Customer[] = [];
     users: User[] = [];
 
-    /*customer1: Customer;*/
 
     constructor(private userService: UserService, private customerService: CustomerService,private router: Router) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -46,8 +45,9 @@ export class HomeComponent implements OnInit {
         localStorage.setItem('isEdit',JSON.stringify(false));
         this.router.navigate(['/register']);
     }
-
     private loadAllCustomersOfCurrentUser() {
         this.customerService.getAllCustomersFromUser(this.currentUser._id).subscribe(customers => { this.customers = customers; });
     }
+
+
 }
