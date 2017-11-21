@@ -28,8 +28,7 @@ export class HomeComponent implements OnInit {
     deleteCustomer(_id: string) {
         this.customerService.delete(_id).subscribe(() => { this.loadAllCustomersOfCurrentUser() });
     }
-
-
+    
     editCustomer(_id: string){
         localStorage.setItem('isEdit',JSON.stringify(true));
         this.customerService.getById(_id).subscribe(data => {localStorage.setItem('editCustomer',JSON.stringify(data));});

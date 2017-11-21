@@ -20,13 +20,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserdashboardComponent} from './dashboard/user/user.dashboard.component'
 import { CustomerdashboardComponent} from './dashboard/customer/customer.dashboard.component'
 import {ProfileComponent} from './profile/profile.component';
+
+import {PopupModule} from 'ng2-opd-popup';
  
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        routing
+        routing,
+        PopupModule.forRoot()
     ],
     declarations: [
         AppComponent,
@@ -37,7 +40,7 @@ import {ProfileComponent} from './profile/profile.component';
         DashboardComponent,
         UserdashboardComponent,
         CustomerdashboardComponent,
-        ProfileComponent
+        ProfileComponent,
     ],
     providers: [
         AuthGuard,

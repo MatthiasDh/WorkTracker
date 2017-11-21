@@ -1,3 +1,6 @@
+<popup>
+        Productname:
+</popup>
 <header>
     <script type="text/javascript" src="../../_directives/fileModel.js"></script>
 </header>
@@ -68,12 +71,12 @@
 <div class="p-information">
     <div class="panel panel-default">
         <div class="panel-heading">Used Products
+            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="addProduct" style="margin-left:4%">Add product</button>
         </div>
         <div class="panel-body">
             <tr *ngFor="let product of customer.usedProducts">
                 <p>Name:
-                    <input type="text" name="input" value="{{product}}">
-                    <input type="button" value="Save product" />
+                    <b>{{product}}</b>
                 </p>
             </tr>
         </div>
