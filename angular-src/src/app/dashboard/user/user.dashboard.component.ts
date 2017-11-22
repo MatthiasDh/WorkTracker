@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from "../../_models/customer";
 
-import {Popup} from 'ng2-opd-popup';
-
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './user.dashboard.component.html',
@@ -12,7 +10,7 @@ export class UserdashboardComponent implements OnInit {
   isStarted: boolean;
   isFinished: boolean;
 
-  constructor(private popup:Popup) { }
+  constructor() { }
 
   ngOnInit() {
       this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
@@ -33,9 +31,5 @@ export class UserdashboardComponent implements OnInit {
   inProgress() {
     this.isStarted = true;
     this.isFinished = false;
-  }
-
-  addProduct() {
-    this.popup.show();
   }
 } 

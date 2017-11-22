@@ -20,8 +20,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserdashboardComponent} from './dashboard/user/user.dashboard.component'
 import { CustomerdashboardComponent} from './dashboard/customer/customer.dashboard.component'
 import {ProfileComponent} from './profile/profile.component';
-
-import {PopupModule} from 'ng2-opd-popup';
  
 @NgModule({
     imports: [
@@ -29,7 +27,6 @@ import {PopupModule} from 'ng2-opd-popup';
         FormsModule,
         HttpModule,
         routing,
-        PopupModule.forRoot()
     ],
     declarations: [
         AppComponent,
