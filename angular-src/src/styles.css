@@ -8433,7 +8433,7 @@ html {
 }
 
 .newProduct{
-  display: inline-block;
-  margin-left: 2%;
+  margin-bottom: 1%;
+  float: right;
 }
 

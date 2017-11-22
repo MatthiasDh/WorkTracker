@@ -12,7 +12,6 @@ export class UserdashboardComponent implements OnInit {
   loading = false;
   customer: Customer;
   isStarted: boolean;
-  isFirstLoad: boolean = true;
   isFinished: boolean;
   addProduct: boolean = false;
   newProduct: string;
@@ -22,52 +21,52 @@ export class UserdashboardComponent implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit() {
-      this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
-      this.isStarted = this.customer.isStarted;
-      this.isFinished = this.customer.isFinished;
-      console.log(this.customer.usedProducts);
+    this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
   }
 
   notStarted() {
-    this.isStarted = false;
-    this.isFinished = false;
+    this.customer.isStarted = false;
+    this.customer.isFinished = false;
+    this.updateCustomer();
   }
 
   finished() {
-    this.isStarted = false;
-    this.isFinished = true;
+    this.customer.isStarted = false;
+    this.customer.isFinished = true;
+    this.updateCustomer();
   }
 
   inProgress() {
-    this.isStarted = true;
-    this.isFinished = false;
+    this.customer.isStarted = true;
+    this.customer.isFinished = false;
+    this.updateCustomer();
   }
 
-  showAddProduct() {
-    if(this.addProduct === true)
-    {
-      this.addProduct = false;
-    }else{
-      this.addProduct = true;
-    }
-  }
-
-  addNewProduct(){
+  addNewProduct() {
     this.customer.usedProducts.push(this.newProduct);
     this.updateCustomer();
-    localStorage.setItem('manageCustomer',JSON.stringify(this.customer));
-    this.showAddProduct();
+  }
+
+  deleteProduct(product: String) {
+    this.removeItem(product,this.customer.usedProducts);
+    this.updateCustomer();
   }
 
   updateCustomer() {
     this.loading = true;
     this.customerService.update(this.customer)
-        .subscribe(data => {
-            this.alertService.success('Update successful', true);
-        },
-        error => {
-            this.alertService.error(error);
-            this.loading = false;
-        });
-}
+      .subscribe(data => {
+        this.alertService.success('Update successful', true);
+      },
+      error => {
+        this.alertService.error(error);
+        this.loading = false;
+      });
+  }
+
+  removeItem(item: String, list: Array<any>) {
+    let index = list.map(function (e) {
+      return e
+    }).indexOf(item); if (index != -1) list.splice(index, 1);
+  }
 } 

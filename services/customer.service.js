@@ -160,7 +160,9 @@ function update(_id, customerParam) {
             firstName: customerParam.firstName,
             lastName: customerParam.lastName,
             username: customerParam.username,
-            usedProducts: customerParam.usedProducts
+            usedProducts: customerParam.usedProducts,
+            isStarted: customerParam.isStarted,
+            isFinished: customerParam.isFinished
         };
 
         // update password if it was entered

@@ -36,8 +36,10 @@ export class HomeComponent implements OnInit {
     }
 
     manageCustomer(_id: string){
-        this.customerService.getById(_id).subscribe(data => {localStorage.setItem('manageCustomer',JSON.stringify(data));});
-        this.router.navigate(['/dashboard']);
+        this.customerService.getById(_id).subscribe(data => {
+            localStorage.setItem('manageCustomer',JSON.stringify(data));
+            this.router.navigate(['/dashboard']);
+        });
     }
 
     createNewCustomer(){
