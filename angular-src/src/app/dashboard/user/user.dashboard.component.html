@@ -69,7 +69,10 @@
 <div class="p-information">
     <div class="panel panel-default">
         <div class="panel-heading">Used Products
-            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="addProduct" style="margin-left:4%">Add product</button>
+            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="showAddProduct()" style="margin-left:4%" ng-model="newProduct">Add product</button>
+            <div *ngIf="addProduct" class="newProduct">
+                    <p>Product name: <input type="text" [(ngModel)]="newProduct" name="product" #product="ngModel"> <button type="button" class=" btn-primary" (click)="addNewProduct()">Save</button></p>
+            </div>
         </div>
         <div class="panel-body">
             <tr *ngFor="let product of customer.usedProducts">

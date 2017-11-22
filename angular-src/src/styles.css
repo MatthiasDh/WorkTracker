@@ -8432,3 +8432,8 @@ html {
   display: inline-block;
 }
 
+.newProduct{
+  display: inline-block;
+  margin-left: 2%;
+}
+

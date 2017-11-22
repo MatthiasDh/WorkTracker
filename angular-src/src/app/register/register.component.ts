@@ -38,7 +38,7 @@ export class RegisterComponent {
         this.model._userId = this.currentUser._id;
         this.model.isStarted = false;
         this.model.isFinished = false;
-        this.model.usedProducts = ["test","1"];
+        this.model.usedProducts = [];
         console.log(this.model);
         this.customerService.create(this.model)
             .subscribe(
