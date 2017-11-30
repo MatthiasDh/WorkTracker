@@ -5,6 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const upload = require('express-fileupload');
 
 
 //Connect to database
@@ -28,8 +29,8 @@ const users = require('./controllers/users.controller');
 const customers = require('./controllers/customers.controller');
 
 // Port Number: 1ste is voor development 2de voor prod en deployment
-const port =4000;
-//const port = process.env.PORT || 8080;
+//const port =4000;
+const port = process.env.PORT || 8080;
 
 // CORS Middleware
 app.use(cors());
@@ -43,6 +44,24 @@ app.use(bodyParser.json());
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Fileupload
+app.use(upload());
+app.post('/upload', function(req, res) {
+  if (!req.files)
+    return res.status(400).send('No files were uploaded.');
+    console.log(req);
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let sampleFile = req.files.sampleFile;
+  console.log(req);
+  // Use the mv() method to place the file somewhere on your server
+  sampleFile.mv('/upload/filename.jpg', function(err) {
+    if (err)
+      return res.status(500).send(err);
+      console.log(req);
+    res.send('File uploaded!');
+  });
+});
 
 require('./config/passport')(passport);
 

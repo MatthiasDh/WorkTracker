@@ -68,6 +68,16 @@
 <div class="f-information">
     <div class="panel panel-default">
         <div class="panel-heading">Usefull files</div>
+        <div class="panel-body">
+                <form ref='uploadForm' 
+                id='uploadForm' 
+                action='/upload' 
+                method='post' 
+                encType="multipart/form-data">
+                  <input type="file" name="sampleFile" />
+                  <input type='submit' value='Upload!' />
+              </form>
+        </div>
     </div>
 </div>
 

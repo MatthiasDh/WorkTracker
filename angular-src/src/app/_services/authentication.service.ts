@@ -15,8 +15,8 @@ export class AuthenticationService {
     user: any;
     isDev:boolean;
     constructor(private http:Http,private router: Router, private userService:UserService) {
-        //this.isDev=false; //bij deployen
-        this.isDev=true; //bij development
+        this.isDev=false; //bij deployen
+        //this.isDev=true; //bij development
     }
 
     //hier aanpassen voor de rechten? user.token

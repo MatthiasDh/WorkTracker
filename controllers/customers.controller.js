@@ -32,7 +32,6 @@ function authenticate(req, res) {
 }
 
 function getCustomersFromUser(req,res) {
-    console.log("-----controller.js-----");
     customerService.getCustomersFromUser(req.params._id)
         .then(function(customers) {
             res.send(customers);
