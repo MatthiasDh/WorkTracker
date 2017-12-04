@@ -29,9 +29,14 @@ function authenticate(username, password) {
             // authentication successful
             deferred.resolve({
                 _id: customer._id,
+                _userId: customer._userId,
+                isFinished: customer.isFinished,
+                isStarted: customer.isStarted,
+                usedProducts: customer.usedProducts,
                 username: customer.username,
                 firstName: customer.firstName,
                 lastName: customer.lastName,
+                roles: customer.roles,
                 token: jwt.sign({ sub: customer._id }, config.secret)
             });
         } else {

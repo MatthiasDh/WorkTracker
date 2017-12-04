@@ -29,8 +29,8 @@ const users = require('./controllers/users.controller');
 const customers = require('./controllers/customers.controller');
 
 // Port Number: 1ste is voor development 2de voor prod en deployment
-//const port =4000;
-const port = process.env.PORT || 8080;
+const port =4000;
+//const port = process.env.PORT || 8080;
 
 // CORS Middleware
 app.use(cors());

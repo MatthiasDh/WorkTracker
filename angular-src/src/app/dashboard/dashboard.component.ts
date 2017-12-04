@@ -8,11 +8,19 @@ export class DashboardComponent implements OnInit {
 
   showCustomer : boolean;
   showUser: boolean;
+  currentUser: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    //Check if it is a customer that logged in
+    if(JSON.parse(localStorage.getItem('isCustomer'))){
+    this.showCustomerDashboard();
+    }else{
     this.showUserDashboard();
+    }
   }
 
 

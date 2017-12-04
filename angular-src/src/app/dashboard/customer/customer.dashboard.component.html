@@ -1,60 +1,59 @@
-<div class="col-lg-8">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        customer
-      </div>
-      <div class="panel-body">
-        <p>gegevens over gebruiker ?, voor de rest geen idee wat er hier moet komen rip, profielfoto..</p>
-      </div>
-
-    </div>
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        Default Panel
-      </div>
-      <div class="panel-body">
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" class="collapsed">test</a>
-              </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-              <div class="panel-body">
-                <p>blabla</p>
-              </div>
-            </div>
-          </div>
+<header>
+    <script type="text/javascript" src="../../_directives/fileModel.js"></script>
+</header>
+<nav class="navbar navbar-clean">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" [routerLink]="['/home']">WorkTracker</a>
         </div>
-      </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a [routerLink]="['/profile']">MY PROFILE</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/login']">LOGOUT</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-  </div>
-
-
-  <div class="col-lg-3">
-    <div class="panel panel-info" style="height:400px;">
-      <div class="panel-heading">
-        Default Panel
-      </div>
-      <div class="panel-body">
-        <p>kalender + klok</p>
-      </div>
-
+    <!-- /.container-fluid -->
+</nav>
+<div class="progress">
+    <div *ngIf="customer.isFinished" class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+        Finished
     </div>
-  </div>
-
-  <div class="col-lg-8">
-
-  </div>
-  <div class="col-lg-3">
-    <div class="panel panel-info" style="height:700px;">
-      <div class="panel-heading">
-        Default Panel
-      </div>
-      <div class="panel-body">
-        <p>progressie leerlingen</p>
-      </div>
-
+    <div *ngIf="!customer.isStarted" class="progress-bar progress-bar-danger" role="progressbar" style="width:100%">
+        Not Started
     </div>
-  </div>
+    <div *ngIf="customer.isStarted" class="progress-bar progress-bar-warning" role="progressbar" style="width:100%">
+        In Progress
+    </div>
+</div>
+<div class="c-information">
+    <div class="panel panel-default">
+        <div class="panel-heading">Customer Information</div>
+        <div class="panel-body">
+            <p>Username: {{customer.username}}</p>
+            <p>Firstname: {{customer.firstName}}</p>
+            <p>Lastname: {{customer.lastName}}</p>
+        </div>
+    </div>
+</div>
+<div class="p-information">
+    <div class="panel panel-default">
+        <div class="panel-heading">Used Products
+        </div>
+        <div class="panel-body">
+            <tr *ngFor="let product of customer.usedProducts">
+                <p>Name:
+                    <b>{{product}}</b>
+            </tr>
+        </div>
+    </div>
+</div>

@@ -13,10 +13,11 @@ import { UserService} from "./user.service";
 export class AuthenticationService {
     authToken: any;
     user: any;
+    customer: any;
     isDev:boolean;
     constructor(private http:Http,private router: Router, private userService:UserService) {
-        this.isDev=false; //bij deployen
-        //this.isDev=true; //bij development
+        //this.isDev=false; //bij deployen
+        this.isDev=true; //bij development
     }
 
     //hier aanpassen voor de rechten? user.token
@@ -33,11 +34,20 @@ export class AuthenticationService {
             });
     }
 
+    loginCustomer(username: string, password: string) {
+      return this.http.post(this.prepEndpoint('/customers/authenticate'), { username: username, password: password })
+          .map((response: Response) => {
+              //login in gelukt als er een jwt token is in de response
+              let customer = response.json();
+              if (customer && customer.token) {
+                  //user en de token opslaan in local storage om ingelogd te blijven
+                  this.storeUserData(customer.token, customer);
+              }
+              return customer;
+          });
+  }
+
     logout() {
-        // remove user from local storage to log user out
-        //let user = JSON.parse(localStorage.getItem('currentUser'));
-        //user.online = false;
-        //this.userService.update(user).subscribe();
         this.authToken = null;
         this.user = null;
         localStorage.clear();

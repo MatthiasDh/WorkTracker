@@ -21,8 +21,12 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadAllCustomersOfCurrentUser();
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if(JSON.parse(localStorage.getItem('isCustomer'))){
+            this.router.navigate(['/dashboard']);
+        }else{
+            this.loadAllCustomersOfCurrentUser();
+            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        }
     }
 
     deleteCustomer(_id: string) {

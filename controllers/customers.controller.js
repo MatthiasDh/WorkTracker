@@ -4,6 +4,7 @@ var router = express.Router();
 var customerService = require('../services/customer.service');
 
 // routes
+router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/:_id',getById);
 router.get('/', getAll);

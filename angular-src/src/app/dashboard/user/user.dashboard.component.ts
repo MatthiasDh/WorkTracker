@@ -4,6 +4,7 @@ import { CustomerService } from '../../_services/customer.service';
 import { AlertService } from '../../_services/alert.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './user.dashboard.component.html',
@@ -11,17 +12,16 @@ import { Router } from '@angular/router';
 export class UserdashboardComponent implements OnInit {
   loading = false;
   customer: Customer;
-  isStarted: boolean;
-  isFinished: boolean;
   addProduct: boolean = false;
   newProduct: string;
 
   constructor(private router: Router,
     private customerService: CustomerService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,) { }
 
   ngOnInit() {
-    this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
+      //Retrieve the customer our user is trying to edit
+      this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
   }
 
   notStarted() {

@@ -23,6 +23,9 @@ export class RegisterComponent {
         ) { }
 
     ngOnInit() {
+        if(JSON.parse(localStorage.getItem('isCustomer'))){
+            this.router.navigate(['/dashboard']);
+        }else{
         this.isEdit = JSON.parse(localStorage.getItem('isEdit'));
         
         if(localStorage.getItem('editCustomer') !=null && this.isEdit == true)
@@ -30,6 +33,7 @@ export class RegisterComponent {
             this.isEdit = true;
             this.model = JSON.parse(localStorage.getItem('editCustomer'));
         }
+    }
     }
 
     register() {
@@ -39,7 +43,6 @@ export class RegisterComponent {
         this.model.isStarted = false;
         this.model.isFinished = false;
         this.model.usedProducts = [];
-        console.log(this.model);
         this.customerService.create(this.model)
             .subscribe(
             data => {

@@ -8,6 +8,7 @@ export class Customer {
     lastName: string;
     isStarted: boolean;
     isFinished: boolean;
+    roles: string[];
     usedProducts: string[] = [];
     constructor(user :User,username:string,password:string,firstname:string,lastname:string){
     };
