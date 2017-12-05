@@ -46,11 +46,11 @@ export class RegisterComponent {
         this.customerService.create(this.model)
             .subscribe(
             data => {
-                this.alertService.success('Registration successful', true);
+                this.alertService.success('Registration successfull.', true);
                 this.router.navigate(['/home']);
             },
             error => {
-                this.alertService.error(error);
+                this.alertService.error("Please enter valid information.");
                 this.loading = false;
             });
     }
@@ -60,11 +60,11 @@ export class RegisterComponent {
         this.loading = true;
         this.customerService.update(this.model)
             .subscribe(data => {
-                this.alertService.success('Update successful', true);
+                this.alertService.success('Update successfull.', true);
                 this.router.navigate(['/home']);
             },
             error => {
-                this.alertService.error(error);
+                this.alertService.error("Could not update the user.");
                 this.loading = false;
             });
     }

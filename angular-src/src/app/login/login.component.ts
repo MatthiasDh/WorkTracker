@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
                 data => {
+                    this.alertService.success("You have succesfully logged in.",true);
                     this.router.navigate([this.returnUrl]);
                     localStorage.setItem('isCustomer',JSON.stringify(false));
                 },
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
                             localStorage.setItem('isCustomer',JSON.stringify(true));
                         },
                         error => {
-                            this.alertService.error(error);
+                            this.alertService.error("The current user does not exist.");
                             this.loading = false;
                         });
                 });

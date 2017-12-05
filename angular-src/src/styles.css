@@ -8423,10 +8423,12 @@ html {
 }
 
 .progress {
-  margin: 2%;
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-bottom: 2%;
 }
 
-.status{
+.status {
   color: white;
   margin-left: 2%;
   display: inline-block;
@@ -8436,4 +8438,3 @@ html {
   margin-bottom: 1%;
   float: right;
 }
-

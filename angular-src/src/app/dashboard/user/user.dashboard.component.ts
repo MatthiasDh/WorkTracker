@@ -56,7 +56,6 @@ export class UserdashboardComponent implements OnInit {
     this.loading = true;
     this.customerService.update(this.customer)
       .subscribe(data => {
-        this.alertService.success('Update successful', true);
       },
       error => {
         this.alertService.error(error);

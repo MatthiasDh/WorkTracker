@@ -1,39 +1,28 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 <nav class="navbar navbar-clean">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" [routerLink]="['/home']">WorkTracker</a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a [routerLink]="['/profile']">MY PROFILE</a></li>
                 <li><a [routerLink]="['/login']">LOGOUT</a></li>
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
 </nav>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-
             <div class="panel panel-default panel-table">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col col-xs-6">
-                            <h3 class="panel-title">Current customers</h3>
+                            <h3 class="panel-title">Hi <b>{{currentUser.firstName}}</b>! You are currently working for:</h3>
                         </div>
                         <div class="col col-xs-6 text-right">
-                            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="createNewCustomer()">Create New</button>
+                            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="createNewCustomer()">Create new customer</button>
                         </div>
                     </div>
                 </div>
@@ -45,6 +34,7 @@
                                 <th class="hidden-xs">Username</th>
                                 <th>Firstname</th>
                                 <th>Lastname</th>
+                                <th>Current progress</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,28 +47,21 @@
                                 <td class="pointer" (click)="manageCustomer(customer._id)">{{customer.username}}</td>
                                 <td>{{customer.firstName}}</td>
                                 <td>{{customer.lastName}}</td>
+                                
+                                <td *ngIf="!customer.isStarted && !customer.isFinished">
+                                    Your work has not been started.
+                                </td>
+                                <td *ngIf="customer.isStarted && !customer.isFinished">
+                                    You are still working.
+                                </td>
+                                <td *ngIf="customer.isFinished">
+                                    Your work has been finished.
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="panel-footer">
-                    <div class="row">
-                        <div class="col col-xs-4">Page 1 of 5
-                        </div>
-                        <div class="col col-xs-8">
-                            <ul class="pagination hidden-xs pull-right">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                            </ul>
-                            <ul class="pagination visible-xs pull-right">
-                                <li><a href="#">«</a></li>
-                                <li><a href="#">»</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
