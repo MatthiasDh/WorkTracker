@@ -8406,13 +8406,13 @@ html {
 .f-information {
   margin-top: 151px;
   right: 2%;
-  position: absolute;
+  position: relative;
   width: 20%;
 
 }
 
 .p-information {
-  position: absolute;
+  position: relative;
   margin-left: 2%;
   width: 75%;
   margin-bottom: 0;
@@ -8437,4 +8437,51 @@ html {
 .newProduct{
   margin-bottom: 1%;
   float: right;
+}
+
+.progression-tabs {
+  position: relative;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 100%;
+}
+
+.task-tab {
+  display: inline-block;
+  width: 32%;
+}
+
+.task-tab .panel-body {
+  min-height: 250px;
+  
+}
+
+.task-tab h3{
+  text-align: center;
+  margin: 0;
+}
+
+.progression-tabs .panel.panel-default {
+  margin-top: 0px;
+}
+
+.progression-card-todo{
+  height: 100px;
+  width: 100%;
+  background-color: red;
+  margin-top: 10px;
+}
+
+.progression-card-progress{
+  height: 100px;
+  width: 100%;
+  background-color: orange;
+  margin-top: 10px;
+}
+
+.progression-card-done{
+  height: 100px;
+  width: 100%;
+  background-color: green;
+  margin-top: 10px;
 }

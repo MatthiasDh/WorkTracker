@@ -1,6 +1,4 @@
-<div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }"
-    style="margin-top: 50px;
-    position: absolute;
-    width: 100%;">
-    {{message.text}}
-</div>
+<div [@openClose]="stateExpression" *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }" style="position:absolute; width:100%; top:-400%; text-align: center; z-index: 1000">
+        {{message.text}}
+        <div class="glyphicon glyphicon-remove" (click)="collapse()" style="position: absolute;right: 5px;top: 5px; z-index: 1">.</div>
+    </div>

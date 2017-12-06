@@ -17,11 +17,11 @@ export class UserdashboardComponent implements OnInit {
 
   constructor(private router: Router,
     private customerService: CustomerService,
-    private alertService: AlertService,) { }
+    private alertService: AlertService, ) { }
 
   ngOnInit() {
-      //Retrieve the customer our user is trying to edit
-      this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
+    //Retrieve the customer our user is trying to edit
+    this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
   }
 
   notStarted() {
@@ -48,11 +48,12 @@ export class UserdashboardComponent implements OnInit {
   }
 
   deleteProduct(product: String) {
-    this.removeItem(product,this.customer.usedProducts);
+    this.removeItem(product, this.customer.usedProducts);
     this.updateCustomer();
   }
 
   updateCustomer() {
+    localStorage.setItem('manageCustomer', JSON.stringify(this.customer));
     this.loading = true;
     this.customerService.update(this.customer)
       .subscribe(data => {
@@ -64,8 +65,66 @@ export class UserdashboardComponent implements OnInit {
   }
 
   removeItem(item: String, list: Array<any>) {
+    if(list != undefined){
     let index = list.map(function (e) {
       return e
     }).indexOf(item); if (index != -1) list.splice(index, 1);
+  }
+  }
+
+  //Drag and drop
+  onTodoDrop(item: any) {
+    if(this.customer.todoItems == undefined)
+    {
+      this.customer.todoItems = [];
+    }
+    console.log(item);
+    console.log(item.dragData);
+    this.removeItem(item.dragData,this.customer.todoItems);
+    this.removeItem(item.dragData,this.customer.inProgressItems);
+    this.removeItem(item.dragData,this.customer.doneItems);
+    this.customer.todoItems.push(item.dragData);
+    this.updateCustomer();
+  }
+
+  onInProgressDrop(item: any) {
+
+    console.log(item);
+    console.log(item.dragData);
+    if(this.customer.inProgressItems == undefined)
+    {
+      this.customer.inProgressItems = [];
+    }
+    this.removeItem(item.dragData,this.customer.todoItems);
+    this.removeItem(item.dragData,this.customer.inProgressItems);
+    this.removeItem(item.dragData,this.customer.doneItems);
+    this.customer.inProgressItems.push(item.dragData);
+    this.updateCustomer();
+  }
+
+  onDoneDrop(item: any) {
+
+    console.log(item);
+    console.log(item.dragData);
+    if(this.customer.doneItems == undefined)
+    {
+      this.customer.doneItems = [];
+    }
+    this.removeItem(item.dragData,this.customer.todoItems);
+    this.removeItem(item.dragData,this.customer.inProgressItems);
+    this.removeItem(item.dragData,this.customer.doneItems);
+    this.customer.doneItems.push(item.dragData);
+    this.updateCustomer();
+  }
+
+  addItem(text:string)
+  {
+    if(this.customer.todoItems == undefined)
+    {
+      this.customer.todoItems = [];
+      this.updateCustomer();
+    }
+    this.customer.todoItems.push(text);
+    this.updateCustomer();
   }
 } 

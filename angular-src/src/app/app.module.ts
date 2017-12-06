@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
- 
+
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
  
@@ -20,6 +22,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserdashboardComponent} from './dashboard/user/user.dashboard.component'
 import { CustomerdashboardComponent} from './dashboard/customer/customer.dashboard.component'
 import {ProfileComponent} from './profile/profile.component';
+
+import {NgDragDropModule} from 'ng-drag-drop';
  
 @NgModule({
     imports: [
@@ -27,6 +31,8 @@ import {ProfileComponent} from './profile/profile.component';
         FormsModule,
         HttpModule,
         routing,
+        NgDragDropModule.forRoot(),
+        BrowserAnimationsModule
     ],
     declarations: [
         AppComponent,

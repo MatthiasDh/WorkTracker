@@ -36,7 +36,9 @@ function authenticate(username, password) {
                 username: customer.username,
                 firstName: customer.firstName,
                 lastName: customer.lastName,
-                roles: customer.roles,
+                todoItems: customer.todoItems,
+                inProgressItems: customer.inProgressItems,
+                doneItems: customer.doneItems,
                 token: jwt.sign({ sub: customer._id }, config.secret)
             });
         } else {
@@ -167,7 +169,10 @@ function update(_id, customerParam) {
             username: customerParam.username,
             usedProducts: customerParam.usedProducts,
             isStarted: customerParam.isStarted,
-            isFinished: customerParam.isFinished
+            isFinished: customerParam.isFinished,
+            todoItems: customer.todoItems,
+            inProgressItems: customer.inProgressItems,
+            doneItems: customer.doneItems,
         };
 
         // update password if it was entered
