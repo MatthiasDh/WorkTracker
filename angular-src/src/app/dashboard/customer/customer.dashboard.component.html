@@ -1,16 +1,13 @@
 <header>
     <script type="text/javascript" src="../../_directives/fileModel.js"></script>
 </header>
+
 <nav class="navbar navbar-clean">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" [routerLink]="['/home']">WorkTracker</a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a [routerLink]="['/profile']">MY PROFILE</a>
@@ -20,40 +17,97 @@
                 </li>
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container-fluid -->
 </nav>
 <div class="progress">
-    <div *ngIf="customer.isFinished" class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+    <div *ngIf="customer.isFinished" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100"
+        aria-valuemin="0" aria-valuemax="100" style="width:100%;background-color:green;">
         Finished
     </div>
-    <div *ngIf="!customer.isStarted" class="progress-bar progress-bar-danger" role="progressbar" style="width:100%">
-        Not Started
+    <div *ngIf="!customer.isStarted && !customer.isFinished" class="progress-bar progress-bar-striped active" role="progressbar"
+        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;background-color:red;">
+        Not started
     </div>
-    <div *ngIf="customer.isStarted" class="progress-bar progress-bar-warning" role="progressbar" style="width:100%">
-        In Progress
+    <div *ngIf="customer.isStarted" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+        aria-valuemax="100" style="width:100%;background-color:orange;">
+        In progress
     </div>
 </div>
-<div class="c-information">
-    <div class="panel panel-default">
-        <div class="panel-heading">Customer Information</div>
-        <div class="panel-body">
-            <p>Username: {{customer.username}}</p>
-            <p>Firstname: {{customer.firstName}}</p>
-            <p>Lastname: {{customer.lastName}}</p>
+<div style="display:flex; justify-content: center;">
+    <div class="p-information">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div>
+                    <b style="display:inline-block;line-height: 35.5px;">Used Products</b>
+                </div>
+            </div>
+            <div class="panel-body">
+                <tr *ngFor="let product of customer.usedProducts">
+                    <p>●
+                        <b>{{product}}</b>
+                </tr>
+            </div>
+        </div>
+    </div>
+    <div class="c-information">
+        <div class="panel panel-default" style="margin-top:0%;">
+            <div class="panel-heading">
+                <b style="line-height: 35.5px;">Customer Information</b>
+            </div>
+            <div class="panel-body">
+                <p>Username: {{customer.username}}</p>
+                <p>Firstname: {{customer.firstName}}</p>
+                <p>Lastname: {{customer.lastName}}</p>
+            </div>
         </div>
     </div>
 </div>
-<div class="p-information">
-    <div class="panel panel-default">
-        <div class="panel-heading">Used Products
+<div class="progression-tabs">
+    <div class="task-tab" style="width:31.5%;margin-right:0.5%">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>To do</h3>
+            </div>
+            <div class="panel-body" style="min-height:275px">
+                <div class="progression-card-todo" *ngFor="let item of customer.todoItems">
+                    <h2>{{item}}</h2>
+                    <div style="position:absolute;top: 2px;right: 3px;">
+                        <div class="glyphicon glyphicon-remove" (click)="collapse(item)"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-            <tr *ngFor="let product of customer.usedProducts">
-                <p>Name:
-                    <b>{{product}}</b>
-            </tr>
+    </div>
+
+    <div class="task-tab" style="width:31%;margin-right:0.5%;margin-left:0.5%">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>In progress</h3>
+            </div>
+            <div class="panel-body" style="min-height:275px">
+                <div class="progression-card-progress" *ngFor="let item of customer.inProgressItems">
+                    <h2>{{item}}</h2>
+                    <div style="position:absolute;top: 2px;right: 3px;">
+                        <div class="glyphicon glyphicon-remove" (click)="collapse(item)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-tab" style="width:31.5%;margin-left:0.5%">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Done</h3>
+            </div>
+            <div class="panel-body" style="min-height:275px">
+                <div class="progression-card-done" *ngFor="let item of customer.doneItems">
+                    <h2>{{item}}</h2>
+                    <div style="position:absolute;top: 2px;right: 3px;">
+                        <div class="glyphicon glyphicon-remove" (click)="collapse(item)"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

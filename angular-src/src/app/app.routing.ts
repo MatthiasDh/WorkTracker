@@ -14,7 +14,7 @@ const appRoutes: Routes = [
    { path: 'dashboard', component:DashboardComponent, canActivate: [AuthGuard]},
    { path: 'profile', component:ProfileComponent, canActivate: [AuthGuard]},
 
-   // otherwise redirect to home
+   //If none of the above redirect to home
    { path: '**', redirectTo: '/home' }
 ];
 

@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         if(JSON.parse(localStorage.getItem('isCustomer'))){
+            //If the user logged in is a customer then redirect to the dashboard
             this.router.navigate(['/dashboard']);
         }else{
             this.loadAllCustomersOfCurrentUser();
@@ -35,8 +36,10 @@ export class HomeComponent implements OnInit {
     
     editCustomer(_id: string){
         localStorage.setItem('isEdit',JSON.stringify(true));
-        this.customerService.getById(_id).subscribe(data => {localStorage.setItem('editCustomer',JSON.stringify(data));});
-        this.router.navigate(['/register']);
+        this.customerService.getById(_id).subscribe(data => {
+            localStorage.setItem('editCustomer',JSON.stringify(data));
+            this.router.navigate(['/register']);
+        });
     }
 
     manageCustomer(_id: string){

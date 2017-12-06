@@ -28,47 +28,29 @@ const io = require('socket.io')(server);
 const users = require('./controllers/users.controller');
 const customers = require('./controllers/customers.controller');
 
-// Port Number: 1ste is voor development 2de voor prod en deployment
-const port =4000;
-//const port = process.env.PORT || 8080;
+//Port Number: 1ste is voor development 2de voor prod en deployment
+//const port =4000;
+const port = process.env.PORT || 8080;
 
-// CORS Middleware
+//CORS Middleware
 app.use(cors());
 
-// Set Static Folder
+//Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Body Parser Middleware
+//Body Parser Middleware
 app.use(bodyParser.json());
 
-// Passport Middleware
+//Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Fileupload
-app.use(upload());
-app.post('/upload', function(req, res) {
-  if (!req.files)
-    return res.status(400).send('No files were uploaded.');
-    console.log(req);
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  let sampleFile = req.files.sampleFile;
-  console.log(req);
-  // Use the mv() method to place the file somewhere on your server
-  sampleFile.mv('/upload/filename.jpg', function(err) {
-    if (err)
-      return res.status(500).send(err);
-      console.log(req);
-    res.send('File uploaded!');
-  });
-});
 
 require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/customers', customers);
 
-// Index Route
+//Index Route
 app.get('/', (req, res) => {
   res.send('Invalid Endpoint');
 });
@@ -85,14 +67,14 @@ io.on('connection', function(socket){
   });
 
 
-   // Test Messages
+   //Test Messages
   socket.on('send-message', (data) => {
     socket.broadcast.emit('message-received', data);
   });
 
 });
 
-// Start Server
+//Start Server
 server.listen(port, () => {
     console.log(__dirname);
     console.log('Server started on port '+port);

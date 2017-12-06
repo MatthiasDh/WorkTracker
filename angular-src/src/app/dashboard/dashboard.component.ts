@@ -17,9 +17,9 @@ export class DashboardComponent implements OnInit {
 
     //Check if it is a customer that logged in
     if(JSON.parse(localStorage.getItem('isCustomer'))){
-    this.showCustomerDashboard();
+      this.showCustomerDashboard();
     }else{
-    this.showUserDashboard();
+      this.showUserDashboard();
     }
   }
 

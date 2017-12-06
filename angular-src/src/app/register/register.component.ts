@@ -24,6 +24,7 @@ export class RegisterComponent {
 
     ngOnInit() {
         if(JSON.parse(localStorage.getItem('isCustomer'))){
+            //If the user logged in is a customer then redirect to the dashboard
             this.router.navigate(['/dashboard']);
         }else{
         this.isEdit = JSON.parse(localStorage.getItem('isEdit'));
@@ -43,6 +44,9 @@ export class RegisterComponent {
         this.model.isStarted = false;
         this.model.isFinished = false;
         this.model.usedProducts = [];
+        this.model.todoItems=  [];
+        this.model.inProgressItems = [];
+        this.model.doneItems = [];
         this.customerService.create(this.model)
             .subscribe(
             data => {
@@ -56,7 +60,6 @@ export class RegisterComponent {
     }
 
     update() {
-        console.log(this.model);
         this.loading = true;
         this.customerService.update(this.model)
             .subscribe(data => {

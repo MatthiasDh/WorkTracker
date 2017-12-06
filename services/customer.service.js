@@ -170,9 +170,9 @@ function update(_id, customerParam) {
             usedProducts: customerParam.usedProducts,
             isStarted: customerParam.isStarted,
             isFinished: customerParam.isFinished,
-            todoItems: customer.todoItems,
-            inProgressItems: customer.inProgressItems,
-            doneItems: customer.doneItems,
+            todoItems: customerParam.todoItems,
+            inProgressItems: customerParam.inProgressItems,
+            doneItems: customerParam.doneItems,
         };
 
         // update password if it was entered

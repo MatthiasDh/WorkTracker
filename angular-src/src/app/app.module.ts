@@ -21,9 +21,9 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserdashboardComponent} from './dashboard/user/user.dashboard.component'
 import { CustomerdashboardComponent} from './dashboard/customer/customer.dashboard.component'
-import {ProfileComponent} from './profile/profile.component';
+import { ProfileComponent} from './profile/profile.component';
 
-import {NgDragDropModule} from 'ng-drag-drop';
+import { NgDragDropModule} from 'ng-drag-drop';
  
 @NgModule({
     imports: [

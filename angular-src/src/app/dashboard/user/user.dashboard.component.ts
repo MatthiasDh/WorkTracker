@@ -78,8 +78,6 @@ export class UserdashboardComponent implements OnInit {
     {
       this.customer.todoItems = [];
     }
-    console.log(item);
-    console.log(item.dragData);
     this.removeItem(item.dragData,this.customer.todoItems);
     this.removeItem(item.dragData,this.customer.inProgressItems);
     this.removeItem(item.dragData,this.customer.doneItems);
@@ -88,9 +86,6 @@ export class UserdashboardComponent implements OnInit {
   }
 
   onInProgressDrop(item: any) {
-
-    console.log(item);
-    console.log(item.dragData);
     if(this.customer.inProgressItems == undefined)
     {
       this.customer.inProgressItems = [];
@@ -103,9 +98,6 @@ export class UserdashboardComponent implements OnInit {
   }
 
   onDoneDrop(item: any) {
-
-    console.log(item);
-    console.log(item.dragData);
     if(this.customer.doneItems == undefined)
     {
       this.customer.doneItems = [];
@@ -125,6 +117,14 @@ export class UserdashboardComponent implements OnInit {
       this.updateCustomer();
     }
     this.customer.todoItems.push(text);
+    this.updateCustomer();
+  }
+
+  collapse(item: any)
+  {
+    this.removeItem(item,this.customer.todoItems);
+    this.removeItem(item,this.customer.inProgressItems);
+    this.removeItem(item,this.customer.doneItems);
     this.updateCustomer();
   }
 } 

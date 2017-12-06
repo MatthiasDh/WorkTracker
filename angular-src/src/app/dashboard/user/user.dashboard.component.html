@@ -1,12 +1,12 @@
 <header>
     <script type="text/javascript" src="../../_directives/fileModel.js"></script>
 </header>
+
 <nav class="navbar navbar-clean">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" [routerLink]="['/home']">WorkTracker</a>
         </div>
-
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav navbar-right">
@@ -20,6 +20,7 @@
         </div>
     </div>
 </nav>
+
 <div class="status">
     <div *ngIf="!customer.isStarted && !customer.isFinished">
         <input (click)="notStarted()" type="radio" name="gender" value="Not Started" checked> Not Started
@@ -37,6 +38,7 @@
         <input (click)="finished()" type="radio" name="gender" value="Finished" checked> Finished
     </div>
 </div>
+
 <div class="progress">
     <div *ngIf="customer.isFinished" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100"
         aria-valuemin="0" aria-valuemax="100" style="width:100%;background-color:green;">
@@ -51,71 +53,92 @@
         In progress
     </div>
 </div>
-<div class="c-information">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <b>Customer Information</b>
-        </div>
-        <div class="panel-body">
-            <p>Username: {{customer.username}}</p>
-            <p>Firstname: {{customer.firstName}}</p>
-            <p>Lastname: {{customer.lastName}}</p>
+<div style="display:flex; justify-content: center;">
+    <div class="p-information">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div>
+                    <b style="display:inline-block;line-height: 35.5px;">Used Products</b>
+                    <div class="col-xs-3" style="float:none;display:inline-block;">
+                        <input class="form-control" type="text" [(ngModel)]="newProduct" name="product" #product="ngModel">
+                    </div>
+                    <button type="button" class="btn btn-success" style="display:inline-block;" (click)="addNewProduct()">Add product</button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <tr *ngFor="let product of customer.usedProducts">
+                    <p>
+                        <button type="button" class="btn btn-danger" (click)="deleteProduct(product)">Delete product</button> ●
+                         <b>{{product}}</b>
+                </tr>
+            </div>
         </div>
     </div>
-</div>
-<div class="p-information">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <b>Used Products</b>
-            <button type="button" class="btn btn-success" (click)="addNewProduct()" style="margin-left:2%">Add product</button>
-            <input type="text" [(ngModel)]="newProduct" name="product" #product="ngModel">
-        </div>
-        <div class="panel-body">
-            <tr *ngFor="let product of customer.usedProducts">
-                <p>
-                    <button type="button" class="btn btn-danger" (click)="deleteProduct(product)">Delete product</button> ●
-                    <b>{{product}}</b>
-            </tr>
+    <div class="c-information">
+        <div class="panel panel-default" style="margin-top:0%;">
+            <div class="panel-heading">
+                <b style="line-height: 35.5px;">Customer Information</b>
+            </div>
+            <div class="panel-body">
+                <p>Username: {{customer.username}}</p>
+                <p>Firstname: {{customer.firstName}}</p>
+                <p>Lastname: {{customer.lastName}}</p>
+            </div>
         </div>
     </div>
 </div>
 <div class="progression-tabs">
-    <div class="task-tab" droppable (onDrop)="onTodoDrop($event)">
+    <div class="task-tab" style="width:31.5%;margin-right:0.5%" droppable (onDrop)="onTodoDrop($event)">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3>To do</h3>
-                <textarea #todoModel></textarea>
-                <input type="button" (click)="addItem(todoModel.value)">
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="min-height:275px">
+                <div class="newItem">
+                    <textarea class="form-control" rows="3" #todoModel cols="200" style="width:100%; height:auto; resize: none;"></textarea>
+                    <input class="btn btn-success" type="button" style="margin-top:5px;margin-bottom: 10px;width:100%; box-sizing: border-box;"
+                        (click)="addItem(todoModel.value)" value="Add item">
+                </div>
                 <div class="progression-card-todo" *ngFor="let item of customer.todoItems" draggable [dragData]="item">
-                    <p>{{item}}</p>
+                    <h2>{{item}}</h2>
+                    <div style="position:absolute;top: 2px;right: 3px;">
+                        <div class="glyphicon glyphicon-remove" (click)="collapse(item)"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="task-tab" droppable (onDrop)="onInProgressDrop($event)">
+
+    <div class="task-tab" style="width:31%;margin-right:0.5%;margin-left:0.5%" droppable (onDrop)="onInProgressDrop($event)">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3>In progress</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="min-height:275px">
                 <div class="progression-card-progress" *ngFor="let item of customer.inProgressItems" draggable [dragData]="item">
-                    <p>{{item}}</p>
+                    <h2>{{item}}</h2>
+                    <div style="position:absolute;top: 2px;right: 3px;">
+                            <div class="glyphicon glyphicon-remove" (click)="collapse(item)"></div>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="task-tab" droppable (onDrop)="onDoneDrop($event)">
+
+    <div class="task-tab" style="width:31.5%;margin-left:0.5%" droppable (onDrop)="onDoneDrop($event)">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3>Done</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="min-height:275px">
                 <div class="progression-card-done" *ngFor="let item of customer.doneItems" draggable [dragData]="item">
-                    <p>{{item}}</p>
+                    <h2>{{item}}</h2>
+                    <div style="position:absolute;top: 2px;right: 3px;">
+                            <div class="glyphicon glyphicon-remove" (click)="collapse(item)"></div>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>

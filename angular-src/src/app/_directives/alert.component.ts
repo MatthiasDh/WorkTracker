@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../_services/alert.service';
 
 import { trigger, state, animate, transition, style } from '@angular/animations';
-import { Observable } from 'rxjs/Observable';
+import { Observable} from 'rxjs/Rx';
 
 @Component({
    moduleId: module.id,
@@ -36,15 +36,14 @@ export class AlertComponent {
 
     expand() { 
         this.stateExpression = 'expanded'; 
-        //this.subscribeToData();
+        this.subscribeToData();
     }
     collapse() { 
         this.stateExpression = 'collapsed';
-        //this.timerSubscription.unsubscribe();
+        this.timerSubscription.unsubscribe();
     }
 
-
-   // private subscribeToData() {
-   //     this.timerSubscription = Observable.timer(4000).first().subscribe(() => this.collapse());
-   // }
+   private subscribeToData() {
+        this.timerSubscription = Observable.timer(3000).first().subscribe(() => this.collapse());
+   }
 }
