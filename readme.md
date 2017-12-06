@@ -1,4 +1,4 @@
-Project: https://webapps-worktracker.herokuapp.com/login
+Project herokuapp: https://webapps-worktracker.herokuapp.com/login
 
 Logininformation
 ================
