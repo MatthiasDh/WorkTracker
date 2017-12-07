@@ -10,6 +10,10 @@ Password: Test
 
 Summary
 ================
+This project contains:
+  - Animations
+  - Push notifications
+  
 An independent worker can login and manage the customers he is working for.
 The worker can:
   - View an overview of all the customers he is working/worked for
