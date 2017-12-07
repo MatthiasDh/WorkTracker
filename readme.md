@@ -15,6 +15,7 @@ Summary
 This project contains:
   - Animations
   - Push notifications
+  - Almost full responsive design
   
 An independent worker can login and manage the customers he is working for.
 The worker can:
