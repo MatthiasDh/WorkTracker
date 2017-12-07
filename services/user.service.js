@@ -25,7 +25,7 @@ function authenticate(username, password) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
         if (user && bcrypt.compareSync(password, user.hash)) {
-            // authentication successful
+            //Authentication successful
             deferred.resolve({
                 _id: user._id,
                 username: user.username,
@@ -34,7 +34,7 @@ function authenticate(username, password) {
                 token: jwt.sign({ sub: user._id }, config.secret)
             });
         } else {
-            // authentication failed
+            //Authentication failed
             deferred.resolve();
         }
     });
@@ -48,7 +48,7 @@ function getAll() {
     db.users.find().toArray(function (err, users) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
-        // return users (without hashed passwords)
+        //Return users (without hashed passwords)
         users = _.map(users, function (user) {
             return _.omit(user, 'hash');
         });
@@ -66,10 +66,10 @@ function getById(_id) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
         if (user) {
-            // return user (without hashed password)
+            //Return user (without hashed password)
             deferred.resolve(_.omit(user, 'hash'));
         } else {
-            // user not found
+            //User not found
             deferred.resolve();
         }
     });
@@ -80,14 +80,14 @@ function getById(_id) {
 function create(userParam) {
     var deferred = Q.defer();
  
-    // validation
+    //Validation
     db.users.findOne(
         { username: userParam.username },
         function (err, user) {
             if (err) deferred.reject(err.name + ': ' + err.message);
  
             if (user) {
-                // username already exists
+                //Username already exists
                 deferred.reject('Username "' + userParam.username + '" is already taken');
             } else {
                 createUser();
@@ -95,10 +95,10 @@ function create(userParam) {
         });
  
     function createUser() {
-        // set user object to userParam without the cleartext password
+        //Set user object to userParam without the cleartext password
         var user = _.omit(userParam, 'password');
  
-        // add hashed password to user object
+        //Add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
  
         db.users.insert(
@@ -116,19 +116,19 @@ function create(userParam) {
 function update(_id, userParam) {
     var deferred = Q.defer();
  
-    // validation
+    //Validation
     db.users.findById(_id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
         if (user.username !== userParam.username) {
-            // username has changed so check if the new username is already taken
+            //Username has changed so check if the new username is already taken
             db.users.findOne(
                 { username: userParam.username },
                 function (err, user) {
                     if (err) deferred.reject(err.name + ': ' + err.message);
  
                     if (user) {
-                        // username already exists
+                        //Username already exists
                         deferred.reject('Username "' + req.body.username + '" is already taken')
                     } else {
                         updateUser();
@@ -140,14 +140,14 @@ function update(_id, userParam) {
     });
  
     function updateUser() {
-        // fields to update
+        //Fields to update
         var set = {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             username: userParam.username,
         };
  
-        // update password if it was entered
+        //Update password if it was entered
         if (userParam.password) {
             set.hash = bcrypt.hashSync(userParam.password, 10);
         }

@@ -12,12 +12,11 @@
 	</div>
 </nav>
 
-<div class="container">
+<!-- Trying to register a user -->
+<div *ngIf="!isEdit" class="container">
 	<div class="row main">
 		<div class="main-login main-center">
-			<h3 *ngIf="!isEdit">Register a new customer!</h3>
-			<h3 *ngIf="isEdit">Update customer</h3>
-
+			<h3>Register a new customer!</h3>
 			<form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
 				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
 					<label for="firstName" class="cols-sm-2 control-label">Firstname</label>
@@ -55,7 +54,7 @@
 					</div>
 				</div>
 
-				<div *ngIf="!isEdit" class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
 					<label for="password" class="cols-sm-2 control-label">Password</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
@@ -69,9 +68,58 @@
 
 				<div class="form-group">
 					<input *ngIf="!isEdit" [disabled]="loading" type="submit" class="btn btn-block btn-lg btn-primary" value="Register" />
-					<input *ngIf="isEdit" [disabled]="loading" type="submit" (click)="update()" class="btn btn-block btn-lg btn-primary" value="Update customer" />
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+
+<!-- Trying to update a user -->
+<div *ngIf="isEdit" class="container">
+		<div class="row main">
+			<div class="main-login main-center">
+				<h3>Update a customer!</h3>
+				<form name="form" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate>
+					<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+						<label for="firstName" class="cols-sm-2 control-label">Firstname</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-user"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="firstName" placeholder="Enter customer's firstname" [(ngModel)]="model.firstName"
+								 #firstName="ngModel" required pattern="[a-zA-Z]*"/>
+							</div>
+							<div *ngIf="f.submitted && !firstName.valid" class="help-block">Firstname is required</div>
+						</div>
+					</div>
+	
+					<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+						<label for="lastName" class="cols-sm-2 control-label">Lastname</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-user"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter customer's lastname" [(ngModel)]="model.lastName"
+								 #lastName="ngModel" required pattern="[a-zA-Z]*"/>
+							</div>
+							<div *ngIf="f.submitted && !lastName.valid" class="help-block">Firstname is required</div>
+						</div>
+					</div>
+	
+					<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+						<label for="username" class="cols-sm-2 control-label">Username</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-user"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="username" id="username" placeholder="Enter customer's username" [(ngModel)]="model.username"
+								 #username="ngModel" required pattern="[a-zA-Z]*"/>
+							</div>
+							<div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<input [disabled]="loading" type="submit" class="btn btn-block btn-lg btn-primary" value="Update customer" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

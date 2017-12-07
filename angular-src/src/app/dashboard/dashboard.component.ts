@@ -15,14 +15,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    //Check if it is a customer that logged in
+    //Check if it is a customer that logged in, if so show the customerdashboard
     if(JSON.parse(localStorage.getItem('isCustomer'))){
       this.showCustomerDashboard();
     }else{
+      //If it is not a customer that logged in show the user/admin dashboard
       this.showUserDashboard();
     }
   }
-
 
   showCustomerDashboard(){
     this.showUser = false;

@@ -6017,7 +6017,6 @@ html {
   
   .modal-content {
     position: relative;
-    background-color: rgba(255, 255, 255, 0.5);
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #999;
@@ -7322,6 +7321,7 @@ html {
     margin-top: 0.5px!important;
   }
   .glyphicon {
+    position: unset;
     top: 0px;
   }
 
@@ -7427,4 +7427,9 @@ html {
   color:white;
   position: relative;
   padding-right: 10px;
+}
+
+.welcome-message {
+  color: white;
+  margin-left: 2%;
 }

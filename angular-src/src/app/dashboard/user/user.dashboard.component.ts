@@ -20,7 +20,7 @@ export class UserdashboardComponent implements OnInit {
     private alertService: AlertService, ) { }
 
   ngOnInit() {
-    //Retrieve the customer our user is trying to edit
+    //Retrieve the customer that our user is trying to edit
     this.customer = JSON.parse(localStorage.getItem('manageCustomer'));
   }
 

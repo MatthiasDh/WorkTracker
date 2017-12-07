@@ -26,7 +26,7 @@ function authenticate(username, password) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (customer && bcrypt.compareSync(password, customer.hash)) {
-            // authentication successful
+            //Authentication successful
             deferred.resolve({
                 _id: customer._id,
                 _userId: customer._userId,
@@ -42,7 +42,7 @@ function authenticate(username, password) {
                 token: jwt.sign({ sub: customer._id }, config.secret)
             });
         } else {
-            // authentication failed
+            //Authentication failed
             deferred.resolve();
         }
     });
@@ -55,7 +55,7 @@ function getCustomersFromUser(_id) {
 
     db.customers.find({_userId : _id}).toArray(function(err, customers) {
         if (err) deferred.reject(err.name + ': ' + err.message);
-                // return customers (without hashed passwords)
+                //Return customers (without hashed passwords)
                 customers = _.map(customers, function(customer) {
                     return _.omit(customer, 'hash');
                 });
@@ -72,7 +72,7 @@ function getAll() {
     db.customers.find().toArray(function(err, customers) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
-        // return customers (without hashed passwords)
+        //Return customers (without hashed passwords)
         customers = _.map(customers, function(customer) {
             return _.omit(customer, 'hash');
         });
@@ -90,10 +90,10 @@ function getById(_id) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (customer) {
-            // return customer (without hashed password)
+            //Return customer (without hashed password)
             deferred.resolve(_.omit(customer, 'hash'));
         } else {
-            // customer not found
+            //Customer not found
             deferred.resolve();
         }
     });
@@ -104,13 +104,13 @@ function getById(_id) {
 function create(customerParam) {
     var deferred = Q.defer();
 
-    // validation
+    //Validation
     db.customers.findOne({ username: customerParam.username },
         function(err, customer) {
             if (err) deferred.reject(err.name + ': ' + err.message);
 
             if (customer) {
-                // username already exists
+                //Username already exists
                 deferred.reject('username "' + customerParam.username + '" is already taken');
             } else {
                 createCustomer();
@@ -118,10 +118,10 @@ function create(customerParam) {
         });
 
     function createCustomer() {
-        // set customer object to customerParam without the cleartext password
+        //Set customer object to customerParam without the cleartext password
         var customer = _.omit(customerParam, 'password');
 
-        // add hashed password to customer object
+        //Add hashed password to customer object
         customer.hash = bcrypt.hashSync(customerParam.password, 10);
 
         db.customers.insert(
@@ -139,18 +139,18 @@ function create(customerParam) {
 function update(_id, customerParam) {
     var deferred = Q.defer();
 
-    // validation
+    //Validation
     db.customers.findById(_id, function(err, customer) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (customer.username !== customerParam.username) {
-            // username has changed so check if the new username is already taken
+            //Username has changed so check if the new username is already taken
             db.customers.findOne({ username: customerParam.username },
                 function(err, customer) {
                     if (err) deferred.reject(err.name + ': ' + err.message);
 
                     if (customer) {
-                        // username already exists
+                        //Username already exists
                         deferred.reject('username "' + req.body.username + '" is already taken')
                     } else {
                         updateCustomer();
@@ -162,7 +162,7 @@ function update(_id, customerParam) {
     });
 
     function updateCustomer() {
-        // fields to update
+        //Fields to update
         var set = {
             firstName: customerParam.firstName,
             lastName: customerParam.lastName,
@@ -175,7 +175,7 @@ function update(_id, customerParam) {
             doneItems: customerParam.doneItems,
         };
 
-        // update password if it was entered
+        //Update password if it was entered
         if (customerParam.password) {
             set.hash = bcrypt.hashSync(customerParam.password, 10);
         }

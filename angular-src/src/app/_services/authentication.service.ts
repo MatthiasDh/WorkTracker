@@ -16,17 +16,17 @@ export class AuthenticationService {
     customer: any;
     isDev:boolean;
     constructor(private http:Http,private router: Router, private userService:UserService) {
-        this.isDev=false; //bij deployen
-        //this.isDev=true; //bij development
+        //this.isDev=false; //For deployment
+        this.isDev=true; //For development
     }
 
     login(username: string, password: string) {
         return this.http.post(this.prepEndpoint('/users/authenticate'), { username: username, password: password })
             .map((response: Response) => {
-                //Login in is successvol als er een jwt token is in de response
+                //Login is succeeded if the response contains a JWT token
                 let user = response.json();
                 if (user && user.token) {
-                    //User en de token opslaan in localstorage om ingelogd te blijven
+                    //Save user and token in the localstorage to stay logged in
                     this.storeUserData(user.token, user);
                 }
                 return user;
@@ -36,10 +36,10 @@ export class AuthenticationService {
     loginCustomer(username: string, password: string) {
       return this.http.post(this.prepEndpoint('/customers/authenticate'), { username: username, password: password })
           .map((response: Response) => {
-              //Login in gelukt als er een jwt token is in de response
+              //Login is succeeded if the response contains a jwt token
               let customer = response.json();
               if (customer && customer.token) {
-                  //User en de token opslaan in local storage om ingelogd te blijven
+                  //Save user and token in the localstorage to stay logged in
                   this.storeUserData(customer.token, customer);
               }
               return customer;

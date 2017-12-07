@@ -28,9 +28,11 @@ const io = require('socket.io')(server);
 const users = require('./controllers/users.controller');
 const customers = require('./controllers/customers.controller');
 
-//Port Number: 1ste is voor development 2de voor prod en deployment
-//const port =4000;
-const port = process.env.PORT || 8080;
+//Enable for development
+const port =4000;
+
+//Enable for deployment
+//const port = process.env.PORT || 8080;
 
 //CORS Middleware
 app.use(cors());
@@ -57,21 +59,6 @@ app.get('/', (req, res) => {
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
-});
-
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-
-
-   //Test Messages
-  socket.on('send-message', (data) => {
-    socket.broadcast.emit('message-received', data);
-  });
-
 });
 
 //Start Server

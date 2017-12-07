@@ -1,9 +1,9 @@
-//customers.controller beheert de data van de customers tabel in de mongodb
+//customers.controller controls the data from the customers table
 var express = require('express');
 var router = express.Router();
 var customerService = require('../services/customer.service');
 
-// routes
+//Routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/:_id',getById);
@@ -15,15 +15,14 @@ router.get('/getcustomersfromuser/:_id',getCustomersFromUser);
 
 module.exports = router;
 
-//Wanneer in de url authenticate wordt aangeroepen dan wordt deze methode aangeroepen.
 function authenticate(req, res) {
     customerService.authenticate(req.body.username, req.body.password)
         .then(function(customer) {
             if (customer) {
-                // authentication successful
+                //Authentication successful
                 res.send(customer);
             } else {
-                // authentication failed
+                //Authentication failed
                 res.status(400).send('username or password is incorrect');
             }
         })

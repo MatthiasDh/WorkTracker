@@ -18,7 +18,7 @@ export class CustomerdashboardComponent implements OnInit {
     private alertService: AlertService,) { }
 
   ngOnInit() {
-      //Retrieve the customer our user is trying to edit
+      //Retrieve the customer that logged in
       this.customer = JSON.parse(localStorage.getItem('currentUser'));
   }
 } 

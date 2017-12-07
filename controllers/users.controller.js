@@ -1,9 +1,9 @@
-//Users.controller beheert de data van de users tabel in de mongodb
+//Users.controller controls the data of the users table
 var express = require('express');
 var router = express.Router();
 var userService = require('../services/user.service');
  
-// routes
+//Routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/', getAll);
@@ -13,15 +13,14 @@ router.delete('/:_id', _delete);
  
 module.exports = router;
  
-//Wanneer in de url authenticate wordt aangeroepen dan wordt deze methode aangeroepen.
 function authenticate(req, res) {
     userService.authenticate(req.body.username, req.body.password)
         .then(function (user) {
             if (user) {
-                // authentication successful
+                //Authentication successful
                 res.send(user);
             } else {
-                // authentication failed
+                //Authentication failed
                 res.status(400).send('Username or password is incorrect');
             }
         })

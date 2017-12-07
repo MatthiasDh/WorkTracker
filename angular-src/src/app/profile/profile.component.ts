@@ -1,8 +1,7 @@
 import {Customer} from "../_models/customer";
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '../_models/user';
- 
+import { User } from '../_models/user'; 
  
 @Component({
     moduleId: module.id,
@@ -12,6 +11,7 @@ import { User } from '../_models/user';
 export class ProfileComponent implements OnInit {
     model: any = {};
     user: User;
+    isCustomer: boolean;
  
     constructor(
         private route: ActivatedRoute,
@@ -19,5 +19,6 @@ export class ProfileComponent implements OnInit {
  
     ngOnInit() {
         this.user = JSON.parse(localStorage.getItem('currentUser'));
+        this.isCustomer = JSON.parse(localStorage.getItem('isCustomer'));
     }
 }

@@ -24,7 +24,7 @@ export class RegisterComponent {
 
     ngOnInit() {
         if(JSON.parse(localStorage.getItem('isCustomer'))){
-            //If the user logged in is a customer then redirect to the dashboard
+            //If the user logged in is a customer then redirect to the dashboard (A customer should only see the dashboard)
             this.router.navigate(['/dashboard']);
         }else{
         this.isEdit = JSON.parse(localStorage.getItem('isEdit'));
