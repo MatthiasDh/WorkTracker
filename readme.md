@@ -19,8 +19,9 @@ This project contains:
   - Authentication unit testing
   - App.component unit testing
   - UserdashboardComponent unit testing
-An independent worker can login and manage the customers he is working for.
+  
 The worker can:
+================
   - View an overview of all the customers he is working/worked for
   - Create an account for a customer which they can use to login and view the progress
   - Delete customers
@@ -34,6 +35,7 @@ The worker can:
   - View his profile page
   
 The customer can:
+================
   - View the status of the work
   - View the todo item board
   - View the used products
