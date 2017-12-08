@@ -10,6 +10,9 @@ Username: MatthiasDh
 
 Password: Test
 
+If you want to run the application change the boolean isDev to development in the services and change the portnumber in server.js
+
+
 Summary
 ================
 This project contains:
