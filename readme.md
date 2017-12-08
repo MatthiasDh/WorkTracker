@@ -8,7 +8,7 @@ Logininformation - Admin account
 ================
 Username: MatthiasDh
 
-Password: Test
+Password: test
 
 If you want to run the application change the boolean isDev to development in the services and change the portnumber in server.js. Then run "npm start" in the servers directory and in angular-src to deploy the app.
 
