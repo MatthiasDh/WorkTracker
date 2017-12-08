@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,7 @@ export class DashboardComponent implements OnInit {
   showUser: boolean;
   currentUser: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -20,7 +21,11 @@ export class DashboardComponent implements OnInit {
       this.showCustomerDashboard();
     }else{
       //If it is not a customer that logged in show the user/admin dashboard
-      this.showUserDashboard();
+      if(JSON.parse(localStorage.getItem('manageCustomer')) == null){
+        this.router.navigate(['/home']);
+      }else{
+        this.showUserDashboard();
+      }
     }
   }
 

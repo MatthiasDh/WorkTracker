@@ -8,12 +8,11 @@ export class Customer {
     lastName: string;
     isStarted: boolean;
     isFinished: boolean;
-    roles: string[];
     usedProducts: string[] = [];
     todoItems: string[] =  [];
     inProgressItems: string[] =  [];
     doneItems: string[] =  [];
     
-    constructor(user :User,username:string,password:string,firstname:string,lastname:string){
+    constructor(username:string,password:string,firstname:string,lastname:string){
     };
 }

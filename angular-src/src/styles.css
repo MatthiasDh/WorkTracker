@@ -7258,6 +7258,11 @@ html {
     }
   }
   
+  @media (max-width: 768px) {
+    .panel-title {
+      word-break: break-all;
+    }
+  }
   .button-group,
   .button-group-vertical {
     position: relative;
@@ -7271,7 +7276,6 @@ html {
     float: left;
   }
   
-  /* REGISTER FORM */
   #playground-container {
     height: 500px;
     overflow: hidden !important;

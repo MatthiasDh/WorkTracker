@@ -7,8 +7,8 @@ import { User } from '../_models/user';
 export class CustomerService {
     isDev:boolean;
     constructor(private http:Http) {
-        //this.isDev=false; //For deployment
-        this.isDev=true; //For development
+        this.isDev=false; //Enable for deployment
+        //this.isDev=true; //Enable for development
     }
  
     getAllCustomersFromUser(_id:string){

@@ -15,9 +15,9 @@ export class AuthenticationService {
     user: any;
     customer: any;
     isDev:boolean;
-    constructor(private http:Http,private router: Router, private userService:UserService) {
-        //this.isDev=false; //For deployment
-        this.isDev=true; //For development
+    constructor(private http:Http,private userService:UserService) {
+        this.isDev=false; //Enable for deployment
+        //this.isDev=true; //Enable for development
     }
 
     login(username: string, password: string) {

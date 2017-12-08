@@ -16,7 +16,9 @@ This project contains:
   - Animations
   - Push notifications
   - Tablet supported responsive design
-  
+  - Authentication unit testing
+  - App.component unit testing
+  - UserdashboardComponent unit testing
 An independent worker can login and manage the customers he is working for.
 The worker can:
   - View an overview of all the customers he is working/worked for

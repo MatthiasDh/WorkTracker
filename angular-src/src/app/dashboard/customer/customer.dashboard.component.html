@@ -4,6 +4,9 @@
 
 <nav class="navbar navbar-clean">
     <div class="container-fluid">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <b>MENU</b>
+                    </button>
         <div class="navbar-header">
             <a class="navbar-brand" [routerLink]="['/home']">WorkTracker</a>
         </div>
@@ -11,9 +14,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a [routerLink]="['/profile']">MY PROFILE</a>
-                </li>
-                <li>
-                    <a>MY DASHBOARD</a>
                 </li>
                 <li>
                     <a [routerLink]="['/login']">LOGOUT</a>
@@ -78,7 +78,7 @@
                 <div class="progression-card-todo" *ngFor="let item of customer.todoItems">
                     <h2>{{item}}</h2>
                     <div style="position:absolute;top: 2px;right: 3px;">
-                        <div class="glyphicon glyphicon-remove" (click)="collapse(item)"></div>
+                        <div class="glyphicon glyphicon-remove"></div>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                 <div class="progression-card-progress" *ngFor="let item of customer.inProgressItems">
                     <h2>{{item}}</h2>
                     <div style="position:absolute;top: 2px;right: 3px;">
-                        <div class="glyphicon glyphicon-remove" (click)="collapse(item)"></div>
+                        <div class="glyphicon glyphicon-remove"></div>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                 <div class="progression-card-done" *ngFor="let item of customer.doneItems">
                     <h2>{{item}}</h2>
                     <div style="position:absolute;top: 2px;right: 3px;">
-                        <div class="glyphicon glyphicon-remove" (click)="collapse(item)"></div>
+                        <div class="glyphicon glyphicon-remove"></div>
                     </div>
                 </div>
             </div>
