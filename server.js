@@ -23,8 +23,6 @@ mongoose.connection.on('error', (err) => {
 
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
-
 const users = require('./controllers/users.controller');
 const customers = require('./controllers/customers.controller');
 
